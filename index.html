@@ -1,18 +1,87 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Be My Valentine</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Be My Valentine ❤️</title>
+
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      color: white;
+      background: linear-gradient(-45deg, #ff4e50, #fc913a, #ff6f91, #845ec2);
+      background-size: 400% 400%;
+      animation: gradientBG 10s ease infinite;
+      overflow-x: hidden;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 18px;
+      margin: 10px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+    }
+
+    #noBtn {
+      position: absolute;
+    }
+
+    .heart {
+      position: fixed;
+      bottom: -20px;
+      font-size: 24px;
+      animation: floatUp 6s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      from { transform: translateY(0); opacity: 1; }
+      to { transform: translateY(-120vh); opacity: 0; }
+    }
+  </style>
 </head>
+
 <body>
 
-  <h1 id="title">Be My Valentine 💖</h1>
-  <img src="cute.png" alt="cute" class="cute-img">
-  <p id="message">Will you be my Valentine?</p>
+  <h1>Will you be my Valentine? 💖</h1>
 
- <button id="yesBtn">Yes</button>
- <button id="noBtn">No</button>
- 
-  <script src="script.js"></script>
+  <button id="yesBtn">Yes</button>
+  <button id="noBtn">No</button>
+
+  <script>
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+
+    yesBtn.addEventListener("click", () => {
+      window.location.href = "yes.html";
+    });
+
+    noBtn.addEventListener("mouseover", () => {
+      const x = Math.random() * (window.innerWidth - 100);
+      const y = Math.random() * (window.innerHeight - 100);
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+    });
+
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerText = "❤️";
+      heart.style.left = Math.random() * window.innerWidth + "px";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }, 500);
+  </script>
+
 </body>
 </html>
